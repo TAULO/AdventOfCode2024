@@ -18,14 +18,12 @@ function isLevelUnsafe(level) {
     }
 
     for (let j = 0; j < level.length; j++) {
-        if (!level[j + 1]) break;
-
         let curr = level[j]
-        let next = level[j + 1];
+        let prev = level[j - 1];
 
-        let n = curr - next > 0 ? curr - next : (curr - next) * -1
+        let n = curr - prev > 0 ? curr - prev : (curr - prev) * -1
 
-        if ((n > 3 || curr === next)) {
+        if ((n > 3 || curr === prev)) {
             return true
         }
     }
@@ -62,4 +60,4 @@ for (let i = 0; i < arr.length; i++) {
     }
 }
 
-console.log(isSafedCount)
+console.log(isSafedCount) // 577
