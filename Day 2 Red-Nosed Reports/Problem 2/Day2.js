@@ -4,8 +4,6 @@ const data = await fileReader('Input.txt');
 
 const arr = data.split('\n');
 
-let count = 0;
-
 function isIncreasing(array) {
     return array.every((val, i, arr) => i === 0 || arr[i - 1] < val);
 }
