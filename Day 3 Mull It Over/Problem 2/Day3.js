@@ -1,6 +1,6 @@
 import { fileReader } from '../../Helper.js'
 
-const data = await fileReader('Input.txt');
+const data = fileReader('Input.txt');
 
 function calculateMulSum(muls) {
     return muls.map(s => {

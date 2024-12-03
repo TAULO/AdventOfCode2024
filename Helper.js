@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-export async function fileReader(file) {
+export function fileReader(file) {
     try {
         return fs.readFile(file, { encoding: 'utf8' });
     } catch (err) {
