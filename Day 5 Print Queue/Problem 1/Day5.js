@@ -4,10 +4,8 @@ const data = await fileReader('Input.txt');
 
 const [pages, orderingRules] = data.split("\n\n")
 
-const firstRule = orderingRules.split("\n")[3].split(",")
-
 function getValidRules(currentRule) {
-    return pages.split('\n').filter((rules, index) => {
+    return pages.split('\n').filter((rules) => {
         const [rule1, rule2] = rules.split('|')
 
         return currentRule.includes(rule1) && currentRule.includes(rule2)
