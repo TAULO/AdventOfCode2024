@@ -6,7 +6,7 @@ const data = await fileReader('Input.txt');
 
 const arr = data.split("\n")
 
-const results = []
+let answ = 0
 
 for (let i = 0; i < arr.length; i++) {
     const line = arr[i]
@@ -34,7 +34,7 @@ for (let i = 0; i < arr.length; i++) {
         })
 
         if (res === parseInt(result)) {
-            results.push(res)
+            answ += res
             found = true
         }
 
@@ -52,4 +52,4 @@ function bruteForceCombination(nums) {
     }).join("")
 }
 
-console.log(results.reduce((acc, curr) => acc + curr)) // 303766880536
+console.log(answ) // 303766880536
