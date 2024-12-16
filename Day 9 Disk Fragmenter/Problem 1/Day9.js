@@ -46,4 +46,4 @@ const res = blocks.reduce((acc, curr, index) => {
     return acc
 }, 0)
 
-console.log(res)
+console.log(res) // 6519155389266
