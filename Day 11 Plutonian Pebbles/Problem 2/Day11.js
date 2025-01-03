@@ -2,46 +2,52 @@ import {
     fileReader
 } from '../../Helper.js'
 
-const data = await fileReader('Input.txt');
+const data = await fileReader('TestInput.txt');
 
 let nums = data.split(" ")
 
-const max = 75
+const max = 6
 
-const memoize = (func) => {
-    const results = {};
-    return (...args) => {
-      const argsKey = JSON.stringify(args);
-      if (!results[argsKey]) {
-        results[argsKey] = func(...args);
-      }
-      return results[argsKey];
-    };
-  };
-  
+const memo = {}
 
-function foo(index, arr) {    
-    if (index >= max) return arr.length
+let sizes = []
 
-    let res = []
+function prob2(index, arr) {
+    if (index >= max) return arr.length;
 
-    arr.forEach(n => {
+    const res = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        const n = arr[i];
+
         if (n === "0") {
-            res.push("1")
-        } else if (n.length % 2 === 0) {
-            const n1 = parseInt(n.slice(0, n.length / 2))
-            const n2 = parseInt(n.slice(n.length / 2))
-
-            res.push(n1 + "")
-            res.push(n2 + "")
-        } else {
-            res.push(parseInt(n) * 2024 + "")
+            res.push("1");
         }
-    })
 
-    return foo(++index, res)
+        if (n.length % 2 === 0) {
+            if (!memo[n]) {
+                const n1 = parseInt(n.slice(0, n.length / 2))
+                const n2 = parseInt(n.slice(n.length / 2))
+
+                memo[n] = { n1, n2 }
+            }
+
+            const { n1, n2 } = memo[n]
+
+            res.push(n1.toString());
+            res.push(n2.toString());
+        } else {
+            if (!memo[n]) {
+                memo[n] = [(parseInt(n) * 2024).toString()];
+            }
+
+            res.push(memo[n][0]);
+        }
+    }
+
+    return prob2(++index, res);
 }
 
-const res = memoize(() => foo(0, nums))
+const s = prob2(0, nums)
 
-console.log(res())
+console.log(sizes, s)
